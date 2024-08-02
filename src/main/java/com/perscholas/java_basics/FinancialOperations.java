@@ -1,7 +1,7 @@
 package com.perscholas.java_basics;
 
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 
 public class FinancialOperations {
@@ -27,4 +27,24 @@ public class FinancialOperations {
     // Creating a stream using Stream.of() method
     Stream<String> streamOf = Stream.of("a", "b", "c", "d");
     */
+    public static double getHourlyRateSumUsingStreams (List<Employee> employees){
+        return employees.stream().mapToDouble(Employee::getSalary).sum();
+
+        }
+    }
+    //filter
+    public static sumDepartmentSalary(List<Employee> employees, String department) {
+        return employees.stream()
+                .filter(employee -> employee
+                        .getDepartment()
+                        .equals(department))
+                .mapToDouble(Employee::getSalary).sum();
+    }
+    public static double getAverageSalaryByDepartment(List<Employee> employees, String department){
+        return employees.stream()
+                .filter(employee -> employee.getDepartment()
+                        .equals(department))
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .getAsDouble();
 }
